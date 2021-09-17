@@ -15,6 +15,8 @@ let totalClasses;
 let myCanvas;
 let ctx;
 
+let gonnaFly = false;
+
 async function load() {
 	model = await tmPose.load(checkpointURL, metadataURL);
 	totalClasses = model.getTotalClasses();
@@ -76,14 +78,25 @@ async function predict() {
 	const prob = select('#prob'); // select <span id="prob">
 	prob.html(sortedPrediction[0].probability.toFixed(2));
 
-	if (sortedPrediction[0].className.search("fly") && sortedPrediction[0].probability > 0.8) {
+	// console.log(sortedPrediction[0].className)
+
+	if (sortedPrediction[0].className.search("fly") === 0) {
 		bird.up();
+		console.log("up")
+
+		// if (!gonnaFly) {
+		// 	gonnaFly = true;
+		// 	setTimeout(() => {
+		// 		bird.up();
+		// 		gonnaFly = false;
+		// 	}, 1000);
+		// }
 	}
   
 	// draw the keypoints and skeleton
-	if (pose) {
-	//   drawPose(pose);
-	}
+	// if (pose) {
+	// //   drawPose(pose);
+	// }
 }
   
 function drawPose(pose) {
@@ -107,7 +120,7 @@ function draw() {
 		pipes[i].update();
 
 		if(pipes[i].hits(bird)){
-			console.log("HIT");
+			// console.log("HIT");
 		}
 
 		if(pipes[i].offscreen()){
