@@ -3,7 +3,7 @@ NYU ITP - Machine Learning for Web week 1 homework.
 
 Based on Dan Shiffman's Coding Train KNN Classifer Tutorial & Yining's Teachable Machine Pose template.
 
-👉 PLAY IT : https://rohsara.github.io/ml-wk2-knn-classifier/
+👉 PLAY : https://rohsara.github.io/ml-wk2-knn-classifier/
 
 # Teachable Machine: Pose
 
