@@ -1,5 +1,5 @@
 function Pipe() {
-    let spacing = random(50, height / 2);
+    let spacing = random(200, height / 2);
     let centerY = random(spacing, height-spacing);
 
     this.top = centerY - spacing / 2;

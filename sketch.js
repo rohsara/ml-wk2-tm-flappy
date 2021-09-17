@@ -15,8 +15,6 @@ let totalClasses;
 let myCanvas;
 let ctx;
 
-let gonnaFly = false;
-
 async function load() {
 	model = await tmPose.load(checkpointURL, metadataURL);
 	totalClasses = model.getTotalClasses();
@@ -32,7 +30,7 @@ async function loadWebcam() {
 
 async function setup() {
 	/* flappy bird part */
-	myCanvas = createCanvas(400, 600);
+	myCanvas = createCanvas(700, 600);
 	ctx = myCanvas.elt.getContext("2d");
 
 	bird = new Bird();
@@ -78,25 +76,12 @@ async function predict() {
 	const prob = select('#prob'); // select <span id="prob">
 	prob.html(sortedPrediction[0].probability.toFixed(2));
 
-	// console.log(sortedPrediction[0].className)
+	console.log(sortedPrediction[0].className)
 
 	if (sortedPrediction[0].className.search("fly") === 0) {
 		bird.up();
 		console.log("up")
-
-		// if (!gonnaFly) {
-		// 	gonnaFly = true;
-		// 	setTimeout(() => {
-		// 		bird.up();
-		// 		gonnaFly = false;
-		// 	}, 1000);
-		// }
 	}
-  
-	// draw the keypoints and skeleton
-	// if (pose) {
-	// //   drawPose(pose);
-	// }
 }
   
 function drawPose(pose) {
@@ -104,9 +89,9 @@ function drawPose(pose) {
 		ctx.drawImage(webcam.canvas, 0, 0);
 		// draw the keypoints and skeleton
 		if (pose) {
-		const minPartConfidence = 0.5;
-		tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
-		tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
+			const minPartConfidence = 0.5;
+			tmPose.drawKeypoints(pose.keypoints, minPartConfidence, ctx);
+			tmPose.drawSkeleton(pose.keypoints, minPartConfidence, ctx);
 		}
 	}
 }
@@ -131,7 +116,7 @@ function draw() {
 	bird.update();
 	bird.show();
 
-	if(frameCount % 100 === 0){
+	if(frameCount % 130 === 0){
 		pipes.push(new Pipe()); 		
 	}
 }
