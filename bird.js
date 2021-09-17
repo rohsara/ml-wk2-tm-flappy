@@ -3,7 +3,7 @@ function Bird() {
     this.x = 64;
 
     this.gravity = 0.1;
-    this.lift = -20;
+    this.lift = -5;
     this.velocity = 0;
 
     this.show = function() {
@@ -13,7 +13,7 @@ function Bird() {
 
     this.up = function() {
       this.velocity += this.lift;   
-      console.log(this.velocity);
+    //   console.log(this.velocity);
     }
 
     this.update = function() {
