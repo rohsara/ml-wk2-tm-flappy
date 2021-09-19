@@ -1,4 +1,4 @@
-# ml-wk2-knn-classifier
+# Using Teachable Machine PoseNet to control Flappy Bird
 NYU ITP - Machine Learning for Web week 1 homework.
 
 Based on Dan Shiffman's Coding Train KNN Classifer Tutorial & Yining's Teachable Machine Pose template.
