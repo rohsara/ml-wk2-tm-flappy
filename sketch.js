@@ -14,13 +14,14 @@ let model;
 let totalClasses;
 let myCanvas;
 let ctx;
+let sfx;
 
 async function load() {
 	model = await tmPose.load(checkpointURL, metadataURL);
 	totalClasses = model.getTotalClasses();
 	console.log("Number of classes, ", totalClasses);
-  }
-  
+}
+
 async function loadWebcam() {
 	webcam = new tmPose.Webcam(size, size, flip); // can change width and height
 	await webcam.setup(); // request access to the webcam
@@ -30,6 +31,9 @@ async function loadWebcam() {
 
 async function setup() {
 	/* flappy bird part */
+	// soundFormats('mp3', 'ogg');
+	sfx = loadSound('sfx-flying-8bit.mp3');
+
 	myCanvas = createCanvas(700, 600);
 	ctx = myCanvas.elt.getContext("2d");
 
@@ -80,7 +84,9 @@ async function predict() {
 
 	if (sortedPrediction[0].className.search("fly") === 0) {
 		bird.up();
-		console.log("up")
+		console.log("up");
+		if (!sfx.isPlaying()) sfx.play();
+
 	}
 }
   
